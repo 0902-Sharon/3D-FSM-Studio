@@ -7,12 +7,14 @@
     "start": "npm run bundle && npm-run-all --parallel webpack serve",
     "serve": "cd src && live-server",
     "bundle": "webpack --config webpack.config.js",
-    "webpack": "webpack --config webpack.config.js --watch"
+    "webpack": "webpack --config webpack.config.js --watch",
+    "deploy": "gh-pages -d src"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "gh-pages": "^4.0.0",
     "three": "^0.125.2"
   },
   "devDependencies": {
