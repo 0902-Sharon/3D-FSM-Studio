@@ -2,6 +2,9 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 
+import { TTFLoader } from "three/examples/jsm/loaders/TTFLoader";
+// import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
+
 // CAMERA
 const camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(
   30,
@@ -72,7 +75,7 @@ function createFloor() {
     new THREE.MeshPhongMaterial({ map: thistexture, color: 0xcce3de })
   );
   blockPlane.position.set(pos.x, pos.y, pos.z);
-  blockPlane.scale.set(scale.x, scale.y, scale.z);
+  blockPlane.scale.set(scale.x * 1.2, scale.y * 1.2, scale.z * 1.2);
   blockPlane.castShadow = true;
   blockPlane.receiveShadow = true;
   scene.add(blockPlane);
@@ -250,7 +253,7 @@ function createSphere() {
     new THREE.MeshPhongMaterial({
       map: thistexture,
       normalMap: thisnormaltexture,
-      color: 0xffff00,
+      color: 0xf72585,
     })
   );
   sphere.position.set(pos.x, pos.y, pos.z);
@@ -352,6 +355,8 @@ function createSphere6() {
     new THREE.SphereBufferGeometry(radius, 32, 32),
     new THREE.MeshPhongMaterial({
       normalMap: thisnormaltexture,
+      // transparent: true,
+      // opacity: 0.4,
       color: 0x41f4,
     })
   );
@@ -708,8 +713,112 @@ function dragObject() {
   }
 }
 
+var loader = new THREE.FontLoader();
+function createletter(mytext, x, y, z) {
+  loader.load("fonts/helvetiker_bold.typeface.json", function (font) {
+    var textGeo = new THREE.TextGeometry(mytext, {
+      font: font,
+
+      size: 5,
+      height: 2,
+      curveSegments: 12,
+
+      bevelThickness: 0.2,
+      bevelSize: 0.2,
+      bevelEnabled: true,
+    });
+
+    var textMaterial = new THREE.MeshPhongMaterial({ color: 0xff7540 });
+
+    var mesh = new THREE.Mesh(textGeo, textMaterial);
+    mesh.position.set(x, y, z);
+    mesh.rotation.x = -Math.PI / 4;
+    mesh.userData.draggable = true;
+    scene.add(mesh);
+  });
+}
+function createtitle(mytext, x, y, z) {
+  loader.load("fonts/helvetiker_bold.typeface.json", function (font) {
+    var textGeo = new THREE.TextGeometry(mytext, {
+      font: font,
+
+      size: 5,
+      height: 2,
+      curveSegments: 12,
+
+      bevelThickness: 0.2,
+      bevelSize: 0.2,
+      bevelEnabled: true,
+    });
+    // const thistexture = new THREE.TextureLoader().load("textwall2.jpg");
+    // const thisnormaltexture = new THREE.TextureLoader().load("ballnormalmap.png");
+    var textMaterial = new THREE.MeshLambertMaterial({
+      // map: thistexture,
+      color: 0xff7999,
+    });
+
+    var mesh = new THREE.Mesh(textGeo, textMaterial);
+    mesh.position.set(x, y, z);
+    mesh.rotation.x = -Math.PI / 5;
+    mesh.userData.draggable = true;
+    scene.add(mesh);
+  });
+}
+
 createFloor();
+
+createtitle("State Machine Studio", -36, 10, -40);
+createletter("0", 30, 6, 20);
+createletter("0", 30, 6, 20);
+createletter("0", 30, 6, 20);
+createletter("0", 30, 6, 20);
+createletter("0", 30, 6, 20);
+createletter("0", 30, 6, 20);
+createletter("0", 30, 6, 20);
+createletter("0", 30, 6, 20);
+
+createletter("1", 35, 6, 20);
+createletter("1", 35, 6, 20);
+createletter("1", 35, 6, 20);
+createletter("1", 35, 6, 20);
+createletter("1", 35, 6, 20);
+createletter("1", 35, 6, 20);
+createletter("1", 35, 6, 20);
+createletter("1", 35, 6, 20);
+
+createletter("a", 27, 6, 30);
+createletter("a", 27, 6, 30);
+createletter("a", 27, 6, 30);
+createletter("a", 27, 6, 30);
+createletter("a", 27, 6, 30);
+createletter("a", 27, 6, 30);
+createletter("a", 27, 6, 30);
+createletter("a", 27, 6, 30);
+
+createletter("b", 32, 6, 30);
+createletter("b", 32, 6, 30);
+createletter("b", 32, 6, 30);
+createletter("b", 32, 6, 30);
+createletter("b", 32, 6, 30);
+createletter("b", 32, 6, 30);
+createletter("b", 32, 6, 30);
+createletter("b", 32, 6, 30);
+
+createletter("c", 37, 6, 30);
+createletter("c", 37, 6, 30);
+createletter("c", 37, 6, 30);
+createletter("c", 37, 6, 30);
+createletter("c", 37, 6, 30);
+createletter("c", 37, 6, 30);
+createletter("c", 37, 6, 30);
+createletter("c", 37, 6, 30);
 // createBox();
+createSphere();
+createSphere2();
+createSphere3();
+createSphere4();
+createSphere5();
+createSphere6();
 createSphere();
 createSphere2();
 createSphere3();
