@@ -1,7 +1,5 @@
-# threejs-raycasting
+# 3D FSM Studio
 
-Example for three.js raycaster to build mouse picking, drag & drop of 3D objects ...
-
-![Screenshot](https://github.com/tamani-coding/threejs-raycasting/blob/main/screenshot.png?raw=true)
+A 3D Finite State Machine Maker for Mealy and Moore state diagrams
 
 Run `npm install` then `npm run start`.
